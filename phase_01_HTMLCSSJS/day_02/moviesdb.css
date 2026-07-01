@@ -1,7 +1,10 @@
 #container{
-    border: 2px solid red;
     height: 100vh;
     width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
 }
 /* #container > div{
     border: 2px solid black;
@@ -11,9 +14,8 @@
 
 #formContainer{
     width: 30%;
-    border: 2px solid black;
     padding: 20px;
-
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
 }
 #formContainer div{
     display: flex;
@@ -23,6 +25,29 @@
 }
 
 button{
-    padding: 20px;
+    padding: 10px;
 
+}
+#movieCards{
+    height: 600px;
+    width: 60%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.card{
+    height: 250px;
+    width: 35%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+}
+
+img{
+    height: 120px;
+    width: 90%;
 }
