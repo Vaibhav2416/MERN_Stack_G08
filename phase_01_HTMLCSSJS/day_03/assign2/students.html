@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <form action="">
+            <div>
+                <label for="">Name: </label>
+                <input type="text" id="name">
+            </div>
+            <div>
+                <label for="">Email: </label>
+                <input type="email" id="email">
+            </div>
+            <div>
+                <label for="">Age: </label>
+                <input type="text" id="age">
+            </div>
+            <div>
+                <button id="submit">Submit</button>
+            </div>
+        </form>
+        <div>
+            <h3>Students Data</h3>
+            <table border="4">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Age</th>
+                    </tr>
+                </thead>  
+                <tbody id="data">
+                
+                </tbody>          
+            </table>
+            
+        </div>
+    </div>
+</body>
+</html>
+<script>
+    var btn=document.getElementById("submit")
+
+    btn.addEventListener("click",function(event){
+        event.preventDefault() // do not send data to server
+        // alert("trigerred")
+        // event.preventDefault()
+
+        var name=document.getElementById("name")
+        var email=document.getElementById("email")
+        var age=document.getElementById("age")
+        
+        // <input id="name" />
+        var valueName=name.value
+        var valueEmail=email.value
+        var valueAge=age.value
+
+        var tbody=document.getElementById("data")
+
+        tbody.innerHTML+=`
+        <tr>
+                    <td>${valueName}</td>
+                    <td>${valueEmail}</td>
+                    <td>${valueAge}</td>
+            </tr>
+        `
+        name.value=""
+        email.value=""
+        age.value=""
+
+    })
+</script>
