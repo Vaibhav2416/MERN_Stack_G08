@@ -1,0 +1,15 @@
+
+img{
+    height: 200px;
+    width: 200px;
+}
+#container{
+    border: 1px solid red;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+#container > div {
+    border: 1px solid black;
+    text-align: center;
+}
