@@ -1,0 +1,33 @@
+#container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+#cardsContainer{
+    display: grid;
+    width: 100%;
+    grid-template-columns: repeat(4,1Fr);
+    gap: 10px;
+}
+#cardsContainer div{
+    height: 400px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+button{
+    background-color: green;
+    color: white;
+    padding: 10px;
+}
+input{
+    height: 20px;
+}
+img{
+    height: 200px;
+}

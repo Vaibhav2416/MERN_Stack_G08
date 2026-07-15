@@ -25,4 +25,4 @@ let response=fetch("https://dummyjson.com/products")
 // you will get raw format data here, and that we need 
 // to convert in javascript objects
 
-let obj={"id":1,"name":"Tshirt"}
+// let obj={"id":1,"name":"Tshirt"}
