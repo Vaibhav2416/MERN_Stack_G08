@@ -1,51 +1,44 @@
-
-// https://dummyjson.com/recipes
-
-// fetch('https://dummyjson.com/recipes').then(())
-
-// async await
-// console.log("hey")
 let cardContainer=document.getElementById("cardsContainer")
 
-// let arr=[
-//     {"id":1,"name":"Aman","Address":"Shimla"},
-//     {"id":2,"name":"Neha","Address":"Shimla"},
-//     {"id":3,"name":"Kartik","Address":"Shimla"},
-//     {"id":4,"name":"Aman","Address":"Shimla"},
-// ]
-// // // arr=[1,2,3,4,5]
-// // for(let i=0;i<arr.length;i++){
-// //     console.log(arr[i])
-// // }
-
-
-// // foreach
-
-// arr.forEach((el)=>{
-//     console.log(el)
-//     // console.log(index)
-// })
-let url='https://dummyjson.com/recipes'
-let fetchData=async()=>{
-    let response=await fetch(url)
+let fetchData=async(value="")=>{
+    let response=await fetch(`https://dummyjson.com/recipes/search?q=${value}`)
+    // await will wait till response comes
     let data=await response.json()
-    
-    let arr=data.recipes
-    console.log(arr)
+    let arr=data.recipes  //[{pizza1},{pizza 2}]
+    // [{recipe 1},{recipe 2},{pizza1},{pizza 2}]
+    cardContainer.innerHTML=""
     arr.forEach((element,i) => {
         // console.log(element.name)
-
+        // d-0 , d-1, d-3
         cardContainer.innerHTML+=`
             <div id="d-${i}">
                 <img src="${element.image}">
                 <h3>${element.name}</h3>
-                <p>Time: ${element.prepTimeMinutes}</p>
-                <button>Delete</button>
+                <p>Time: ${element.prepTimeMinutes} Minutes</p>
+                <button onclick="handleDelete(${i})">Delete</button>
             </div>
         `
     });
 }
-// fetchData()
+fetchData() // recipes
+
+function handleDelete(divId){
+    // alert(`trigered ${divId}`)
+    let div=document.getElementById(`d-${divId}`)
+    div.remove()
+}
+
+function searchRecipe(){
+    // alert("Search")
+    let inp=document.getElementById("inp").value //pizza
+    fetchData(inp) // fetchData(pizza)
+    // input tag will remain same here
+    document.getElementById("inp").value=""
+}
+
+
+
+
 
 // Difference between normal functions and arrow functions
 // how hoisting behaves in both?
