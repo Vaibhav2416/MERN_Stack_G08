@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
+    <style>
+        #container{
+            border: 1px solid red;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #inpContainer{
+            width: 60%;
+            height: auto;
+            border: 1px solid black;
+            padding: 10px;
+           
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+    <div id="inpContainer">
+        <h3>Todo Tracker</h3>
+        <div class="input-group mb-3">
+        <input id="task" type="text" class="form-control" placeholder="Add Task" aria-label="Recipient’s username" aria-describedby="button-addon2">
+        <button onclick="handleClick()" class="btn btn-outline-secondary" type="button" id="button-addon2">Submit</button>
+        </div>
+        <div id="taskContainer">
+                
+        </div>
+    </div>
+    </div> 
+</body>
+</html>
+<script>
+    let todos=[] // to track tasks
+    let text=document.getElementById("task")
+    // mern --> click button --> handleClick
+    let handleClick=()=>{
+        let task={
+            title:text.value,
+            status:false
+        }
+        // {title:"Mern",status:false}
+        // [{title:"Mern",status:false},{title:"Mern",status:false}]
+        todos.push(task)
+        // 
+        render()
+    }
+
+    let taskContainer=document.getElementById("taskContainer")
+    let render=()=>{
+        // [{title:text,status}]
+        // [1,2]
+        taskContainer.innerHTML=""
+        todos.forEach((el,index)=>{
+            taskContainer.innerHTML+=`
+            <div style="border-bottom: 1px solid black;
+             display:flex; justify-content: space-between;">
+                <p onclick="handleStatus(${index})"
+                style="cursor:pointer;
+                text-decoration: ${el.status==true? "line-through":"none"} ;
+                "
+
+                >${el.title}</p> 
+                <button onclick="handleDelete(${index})" 
+                type="button" class="btn btn-light">❌</button>   
+            </div>
+            `
+        })
+    }
+    let handleDelete=(index)=>{
+       todos.splice(index,1)
+       render()
+    }
+    
+    let handleStatus=(id)=>{
+        console.log("todos",todos)
+        console.log("Indx",id)
+        // html --> 1
+        todos[id].status=!todos[id].status
+        //html.status--> false --> true
+        console.log("Todos after click",todos)
+        render()
+    }
+</script>

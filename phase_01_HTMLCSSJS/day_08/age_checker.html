@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>AGE CHECKER</h1>
+    <input type="number" id="age"> 
+    <button onclick="handleClick()">BUTTON</button>
+    <p id="ageText"></p>
+</body>
+</html>
+<script>
+    function handleClick(){
+        let age=document.getElementById("age").value
+        let text=document.getElementById("ageText")
+        if(age>=18){
+            text.innerHTML="You can Vote"
+        }
+        else{
+             text.innerHTML="You are not eligible"
+        }
+    }
+</script>
