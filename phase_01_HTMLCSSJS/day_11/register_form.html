@@ -88,10 +88,24 @@ let handleSubmit=(event)=>{
         age: document.getElementById("age").value,
         course: document.getElementById("course").value
     };
+    // {name:"Aman",age:28,course:"Java"}
+    let json_student=JSON.stringify(student)
+    // {"name::"Aman","age":28,"course":"Java"}
+    // store this object in db/localstorage
+    localStorage.setItem("records",json_student)
 
     console.log(student);
-
     // Display Card using object properties
+
+    form.reset();
+}
+
+let renderFunction=()=>{
+    let get_data=localStorage.getItem("records")
+    
+    let student=JSON.parse(get_data) // string =>object
+    console.log(student)
+    console.log(typeof(student))
     output.innerHTML = `
         <div class="student-card">
             <h3 class="text-primary mb-3">${student.name}</h3>
@@ -99,9 +113,12 @@ let handleSubmit=(event)=>{
             <p><strong>Course:</strong> ${student.course}</p>
         </div>
     `;
+} 
 
-    form.reset();
-}
+
+renderFunction()
+
+
 </script>
 
 </body>
