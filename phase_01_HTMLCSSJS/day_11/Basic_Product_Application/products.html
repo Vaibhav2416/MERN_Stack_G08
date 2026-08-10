@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="container">
+        <h1>This is Product Page</h1>
+        <h3 id="username">Welcome : {userName}</h3>
+        <button onclick="handleLogout()">Logout</button>
+    </div>
+    <div id="falseUser">
+        
+    </div>
+</body>
+</html>
+<script>
+    let container=document.getElementById("container")
+    let check_status=localStorage.getItem("isLoggedIn")
+    let falseUser=document.getElementById("falseUser")
+    let get_current_user=JSON.parse(localStorage.getItem("current_user"))
+    let username=document.getElementById("username")
+    
+    if(check_status=="true"){
+        container.style.display="block" // this will show content
+        username.innerHTML=`Welcome:${get_current_user.username}`
+        
+    }else{
+        container.style.display="none" // this will hide content
+        falseUser.innerHTML=`<h1>Please Login First</h1>
+        <a href="login.html">Click here to login</a>`
+    }
+
+    let handleLogout=()=>{
+        localStorage.removeItem("isLoggedIn")
+        localStorage.removeItem("current_user")
+        window.location.reload()
+    }
+
+</script>

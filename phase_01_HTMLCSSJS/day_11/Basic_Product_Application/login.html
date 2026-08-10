@@ -69,7 +69,24 @@
         let email=document.getElementById("email")
         let password=document.getElementById("password")
         // get request for checking user exists or not 
-        let users_data=localStorage.getItem("users")
+        let users_data=JSON.parse(localStorage.getItem("users"))
         console.log(users_data)
+        // [{useremail:"aman@gmail.com"},{useremail:"vaibhav@masai.com"}]
+        let user=users_data.find((el)=>el.useremail==email.value)
+        console.log("Matched User",user)
+        // filter => will return matching array of objects 
+        // find => will return single matching object
+        if(user && user.userpassword==password.value){
+            localStorage.setItem("current_user",JSON.stringify(user))
+            localStorage.setItem("isLoggedIn","true")
+            alert("User logged In Successfully")
+            window.location.href="products.html"
+        }else{
+            alert("Invalid Credentials")
+        }
     }
+    // signup ==> user registration
+    // login ==> backend verifies user whether he/she is present
+    //          in database or not ===> token
+    // token ==> user information stored 
 </script>
