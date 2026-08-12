@@ -7,9 +7,16 @@
 </head>
 <body>
     <div id="container">
-        <h1>This is Product Page</h1>
-        <h3 id="username">Welcome : {userName}</h3>
-        <button onclick="handleLogout()">Logout</button>
+        <div>
+            <h1>Welcome to Product Page</h1>
+            <h3 id="username">User : </h3>
+            <button onclick="handleLogout()">Logout</button>
+            <a href="cart.html">Cart Page</a>
+            <div id="cards">
+
+            </div>
+        </div>
+        
     </div>
     <div id="falseUser">
         
@@ -17,26 +24,60 @@
 </body>
 </html>
 <script>
+    // check first whether user is logged in or not
+    let check_status=sessionStorage.getItem("isLoggedIn")
     let container=document.getElementById("container")
-    let check_status=localStorage.getItem("isLoggedIn")
     let falseUser=document.getElementById("falseUser")
-    let get_current_user=JSON.parse(localStorage.getItem("current_user"))
     let username=document.getElementById("username")
-    
+    let currentuser=JSON.parse(sessionStorage.getItem("current_user"))
+    let cards=document.getElementById("cards")
+
+    console.log(check_status)
     if(check_status=="true"){
-        container.style.display="block" // this will show content
-        username.innerHTML=`Welcome:${get_current_user.username}`
-        
+        username.innerHTML=`<h3>User:${currentuser.name}</h3>`
+        container.style.display="block" // show content
     }else{
-        container.style.display="none" // this will hide content
-        falseUser.innerHTML=`<h1>Please Login First</h1>
+        container.style.display="none" // hides content
+        falseUser.innerHTML=`<h1>Please login first</h1>
         <a href="login.html">Click here to login</a>`
     }
 
     let handleLogout=()=>{
-        localStorage.removeItem("isLoggedIn")
-        localStorage.removeItem("current_user")
+        sessionStorage.removeItem("isLoggedIn")
         window.location.reload()
+    }
+    // api ==> fetch
+
+    // session storage ==> your data will be stored till current session
+    // means till browser or tab closes
+
+    async function fetchData(){
+        let resp=await fetch("https://dummyjson.com/products")
+        let data=await resp.json()
+        let products=data.products
+        localStorage.setItem("products",JSON.stringify(products))
+
+        products.forEach(element => {
+            cards.innerHTML+=`
+            <h3>${element.title}</h3>
+            <img height="200px" src="${element.images[0]}">
+            <button onclick="handleCart(${element.id})">Add to Cart</button>
+            `
+        });
+    }
+    fetchData()
+
+    function handleCart(id){
+        // alert(`clicked ${id}`)
+        // all products will be here == filter for getting clicked
+        let all_products=JSON.parse(localStorage.getItem("products"))
+        
+        let cartItem=all_products.find((el)=>el.id==id)
+        // [{id:1,title:"Mascara"},{id:2,title:"item 2"}] == 1
+        // cartItem = {id:1,title:"Mascara"}
+        let array=JSON.parse(localStorage.getItem("cart")) || []
+        array.push(cartItem)
+        localStorage.setItem("cart",JSON.stringify(array))
     }
 
 </script>
