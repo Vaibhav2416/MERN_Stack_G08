@@ -1,0 +1,17 @@
+{
+  "users": [
+    {
+      "name": "yogesh",
+      "email": "yogesh@gmail.com",
+      "age": "31",
+      "id": "zk21oTKxH5w"
+    },
+    {
+      "name": "Neha",
+      "email": "neha@email.com",
+      "age": "25",
+      "id": "5jCi0n0WejA"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}
