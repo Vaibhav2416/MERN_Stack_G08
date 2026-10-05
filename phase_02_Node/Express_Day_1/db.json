@@ -1,7 +1,1 @@
-{
-    "users":[
-        {"id":1,"name":"Aman","email":"aman@gmail.com"},
-        
-        {"id":2,"name":"Prateek","email":"prateek@gmail.com"}
-    ]
-}
+{"users":[{"id":1,"name":"Aman","email":"aman@gmail.com"},{"id":2,"name":"Prateek","email":"prateek@gmail.com"},{"id":3,"name":"Manish","email":"manish@gmail.com"},{"name":"Priya","email":"priya@gmail.com","id":5}]}
